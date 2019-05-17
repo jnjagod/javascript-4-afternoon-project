@@ -29,7 +29,18 @@
   Call your class Employee and receive all the data in the constructor in the order listed above.
 */
 
-//Code Here
+class Employee {
+  constructor (first_name, last_name, email, age){
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.email = email;
+    this.age = age;
+  }
+
+  makeWidget(){
+    return `${this.first_name} ${this.last_name} Widget`
+  }
+}
 
 
 ////////// PROBLEM 2 //////////
@@ -47,7 +58,18 @@
   Call your new class Manager
 */
 
-//Code Here
+class Manager extends Employee {
+  constructor(first_name, last_name, email, age, reports){
+    super(first_name, last_name, email, age)
+    this.reports = [];
+  }
+  hire(employee){
+    this.reports.push(employee)
+  }
+  fire(i){
+    this.reports.splice(i, 1)
+  }
+}
 
 
 ////////// PROBLEM 3 //////////
@@ -71,7 +93,22 @@
   Call your new class ProgressiveManager
 */
 
-//Code Here
+class ProgressiveManager extends Manager{
+  constructor(first_name, last_name, email, age, reports, title, bonus){
+    super(first_name, last_name, email, age, reports);
+    this.title = 'Not a manager';
+    this.bonus = 0
+  }
+  hire(employee){
+    this.reports.push(employee)
+    let num = this.reports.length
+    if(num === 0){this.title = 'Not a Manager'} else if(num > 0 && num <= 3){this.title = 'Barely Manager'} else if (num >= 4 && num <= 10){ this.title = 'Mostly Manager'} else if (num >= 11 && num <= 50){ this.title = 'Manager'} else if (num >= 51 && num <= 100){ this.title = 'Manager Plus'} else if (num > 100){ this.title = 'Bestest Manager'}
+  }
+  fire(i){
+    this.reports.splice(i, 1);
+    this.bonus += 100;
+  }
+}
 
 
 
@@ -97,7 +134,3 @@
         - This function returns an anonymous function that is called when the machine is done rebooting
         - The anonymous function should decrease wear_and_tear_count by 10, and set needs_reboot to false
 */
-
-//Code Here
-
-
